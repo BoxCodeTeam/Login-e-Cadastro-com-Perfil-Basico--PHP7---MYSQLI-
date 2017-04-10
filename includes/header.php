@@ -56,8 +56,8 @@ if($systemStart==true) {
 
 
 		/* pega os valores fornecidos pelo usuario */
-		$login=$_POST["login"];
-		$senha=$_POST["senha"];
+		$login=addslashes($_POST["login"]);
+		$senha=addslashes($_POST["senha"]);
 		/* Descriptografa a senha */
 		$senha=sha1($senha);
 
@@ -100,11 +100,11 @@ if($systemStart==true) {
 	// Agora vamos para o sistema de cadastro 
 	if($acao=="cadastrar") {
 		// O ucwords torna a primeira letra do elemento maiuscula
-		$nome = ucwords($_POST["nome"]);
-		$sobrenome = ucwords($_POST["sobrenome"]);
-		$email = $_POST["email"];
-		$login = $_POST["login"];
-		$senha = $_POST["senha"];
+		$nome = ucwords(addslashes($_POST["nome"]));
+		$sobrenome = ucwords(addslashes($_POST["sobrenome"]));
+		$email = addslashes($_POST["email"]);
+		$login = addslashes($_POST["login"]);
+		$senha = addslashes($_POST["senha"]);
 
 		/* Verifica se ja possui uma conta registrada com tal login */
 		$busca = "SELECT * FROM usuarios WHERE login = '$login'";
@@ -145,12 +145,8 @@ if($systemStart==true) {
 		// muda o cookie
 		setcookie("logado",0);
 
-		// muda as sessions
-		$_SESSION["nome"]="";
-		$_SESSION["sobrenome"]="";
-		$_SESSION["email"]="";
-		$_SESSION["login"]="";
-		$_SESSION["data"]="";
+		// destroi as sessions
+		session_destroy() ;
 
 		header("Location: index.php");
 	}
