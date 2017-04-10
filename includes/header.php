@@ -113,7 +113,7 @@ if($systemStart==true) {
 		$sobrenome = ucwords(anti_injection($_POST["sobrenome"]));
 		$email = anti_injection($_POST["email"]);
 		$login = anti_injection($_POST["login"]);
-		$senha = anti_injection($_POST["senha"]);
+		$senha = $_POST["senha"];
 
 		/* Verifica se ja possui uma conta registrada com tal login */
 		$busca = "SELECT * FROM usuarios WHERE login = '$login'";
