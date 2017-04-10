@@ -31,11 +31,11 @@ include("includes/header.php");
 		<form method="post" action="?acao=cadastrar" class="login-form">
 
 			<!-- Campos para o usuario preencher os dados -->
-			<input type="text" name="nome" placeholder="nome">
-			<input type="text" name="sobrenome" placeholder="sobrenome">
-			<input type="email" name="email" placeholder="email">
-			<input type="text" name="login" placeholder="Login">
-			<input type="password" name="senha" placeholder="Senha">
+			<input type="text" name="nome" placeholder="nome" maxlenght="60" required="on">
+			<input type="text" name="sobrenome" placeholder="sobrenome" maxlenght="60" required="on">
+			<input type="email" name="email" placeholder="email" maxlenght="60" required="on">
+			<input type="text" name="login" placeholder="Login" maxlenght="40" required="on"> 
+			<input type="password" name="senha" placeholder="Senha" maxlenght="40" required="on">
 			<h4><?php echo $infoMsg; ?></h4>
 
 			<!-- Botão para o usuario enviar o formulario -->
