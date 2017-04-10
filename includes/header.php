@@ -32,21 +32,27 @@ $db = "sistema";
 
 /* conecta ao banco de dados */
 $mysqli = new mysqli($host, $user, $senha, $db);
-/* Cria o banco de dados */
-$mysqli->query("CREATE DATEBASE sistema");
 /* Cria a tabela */
 $criaTabela = "CREATE TABLE usuarios (
 id INT AUTO_INCREMENT,
-nome VARCHAR(255),
-sobrenome VARCHAR(255),
-email VARCHAR(255),
-login VARCHAR(255),
-senha VARCHAR(255),
-data VARCHAR(255),
+nome VARCHAR(60),
+sobrenome VARCHAR(60),
+email VARCHAR(60),
+login VARCHAR(40),
+senha VARCHAR(40),
+data VARCHAR(20),
 PRIMARY KEY(id))";
 $mysqli->query($criaTabela);
 
 
+/* Anti Sql Injection */
+function anti_injection($sql){
+      $sql = preg_replace("/(from|select|insert|delete|where|drop table|show tables|#|*|--|\\)/", "" ,$sql);
+   $sql = trim($sql);
+   $sql = strip_tags($sql);
+   $sql = (get_magic_quotes_gpc()) ? $sql : addslashes($sql);
+   return $sql;
+}
 
 /* Verifica se o sistema foi iniciado */
 if($systemStart==true) {
@@ -56,8 +62,8 @@ if($systemStart==true) {
 
 
 		/* pega os valores fornecidos pelo usuario */
-		$login=addslashes($_POST["login"]);
-		$senha=addslashes($_POST["senha"]);
+		$login=anti_injection($_POST["login"]);
+		$senha=anti_injection($_POST["senha"]);
 		/* Descriptografa a senha */
 		$senha=sha1($senha);
 
@@ -100,11 +106,11 @@ if($systemStart==true) {
 	// Agora vamos para o sistema de cadastro 
 	if($acao=="cadastrar") {
 		// O ucwords torna a primeira letra do elemento maiuscula
-		$nome = ucwords(addslashes($_POST["nome"]));
-		$sobrenome = ucwords(addslashes($_POST["sobrenome"]));
-		$email = addslashes($_POST["email"]);
-		$login = addslashes($_POST["login"]);
-		$senha = addslashes($_POST["senha"]);
+		$nome = ucwords(anti_injection($_POST["nome"]));
+		$sobrenome = ucwords(anti_injection($_POST["sobrenome"]));
+		$email = anti_injection($_POST["email"]);
+		$login = anti_injection($_POST["login"]);
+		$senha = anti_injection($_POST["senha"]);
 
 		/* Verifica se ja possui uma conta registrada com tal login */
 		$busca = "SELECT * FROM usuarios WHERE login = '$login'";
