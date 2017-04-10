@@ -66,7 +66,7 @@ if($systemStart==true) {
 
 		/* pega os valores fornecidos pelo usuario */
 		$login=anti_injection($_POST["login"]);
-		$senha=anti_injection($_POST["senha"]);
+		$senha=$_POST["senha"];
 		/* Descriptografa a senha */
 		$senha=sha1($senha);
 
