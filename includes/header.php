@@ -30,8 +30,11 @@ $user = "root";
 $senha = "root";
 $db = "sistema";
 
+
 /* conecta ao banco de dados */
 $mysqli = new mysqli($host, $user, $senha, $db);
+
+
 /* Cria a tabela */
 $criaTabela = "CREATE TABLE usuarios (
 id INT AUTO_INCREMENT,
