@@ -1,4 +1,10 @@
 <?php 
+/*-- Verifica a url --*/
+if($_SERVER['SCRIPT_NAME']!='/index.php') {
+    header('Location: /');
+}
+
+/*-- Arquivo Header --*/
 include("includes/header.php");
 ?>
 <!DOCTYPE html>
