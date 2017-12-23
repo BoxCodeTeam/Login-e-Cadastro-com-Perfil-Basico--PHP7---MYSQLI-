@@ -17,7 +17,6 @@ header h3 {text-transform: uppercase; padding-top: 20px;}
 .perfil {width: 100%; float: left; line-height: 30px; font-family: verdana; padding: 15px;}
 .perfil input {margin: 10px; width: 80px; cursor: pointer;}
 
-
 /* -- Footer -- */
 footer {width: 100%; float: left; text-align: center; height: 50px; background: #333;}
 footer h4 a {color: #fff; }
