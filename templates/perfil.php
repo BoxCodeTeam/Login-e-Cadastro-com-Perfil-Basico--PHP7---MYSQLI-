@@ -1,6 +1,6 @@
 <?php 
 /*-- Verifica a url --*/
-if($_SERVER['SCRIPT_NAME']!='/index.php') {
+if($_SERVER['SCRIPT_NAME']!='/perfil.php') {
     header('Location: /');
 }
 
